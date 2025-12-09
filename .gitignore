@@ -1,0 +1,15 @@
+# Directorios de caché y entorno
+__pycache__/
+.pytest_cache/
+.vscode/
+
+# Dependencias (si usas un entorno virtual)
+venv/
+env/
+
+# Archivos de reportes
+reportes/
+*.html
+
+# Archivos específicos de macOS
+.DS_Store
