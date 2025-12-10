@@ -2,36 +2,37 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+# Clase que representa la página de finalización de compra.
 class CheckoutCompletePage:
     URL_CURRENT = '/checkout-complete.html'
     SUCCESS_MESSAGE = (By.CLASS_NAME, 'complete-header')
     SUCCESS_TEXT = (By.CLASS_NAME, 'complete-text')
     BACK_HOME_BUTTON = (By.ID, 'back-to-products')
     PONY_EXPRESS_IMAGE = (By.CLASS_NAME, 'pony_express')
-
+# Constructor de la clase CheckoutCompletePage.
     def __init__(self, driver):
         self.driver = driver
-
+# Función para verificar si estamos en la página de finalización de compra.
     def is_at_page(self):
         return self.URL_CURRENT in self.driver.current_url
-
+# Función para obtener el mensaje de éxito.
     def get_success_message(self):
         try:
             return self.driver.find_element(*self.SUCCESS_MESSAGE).text
         except:
             return ""
-
+# Función para obtener el texto de éxito adicional.
     def get_success_text(self):
         try:
             return self.driver.find_element(*self.SUCCESS_TEXT).text
         except:
             return ""
-
+# Función para regresar a la página de inventario.
     def back_to_home(self):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.BACK_HOME_BUTTON)
         ).click()
-
+# Función para verificar si la imagen de éxito está mostrada.
     def is_success_image_displayed(self):
         try:
             return self.driver.find_element(*self.PONY_EXPRESS_IMAGE).is_displayed()

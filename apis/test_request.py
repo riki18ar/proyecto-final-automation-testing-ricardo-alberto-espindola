@@ -54,10 +54,13 @@ class TestGetUsers:
         for i in key_structure:
             # Informa si falta alguna llave en el primer usuario.
             assert i in first_user , f"la llave {i} no esta en el {first_user}"
+
+# Clase de pruebas para crear un nuevo usuario.
 class TestPostUser:
     URL_API = "https://jsonplaceholder.typicode.com/"
-
+# Marca para identificar la prueba como de tipo POST
     @pytest.mark.post
+    # Prueba para verificar el código de respuesta de la petición POST /users
     def test_post_response_code(self, api_url):
         new_user = {
             "name": fake.name(),
@@ -65,27 +68,29 @@ class TestPostUser:
             "phone": fake.phone_number(),
             "createdAt": "2024-06-10T12:00:00Z"
             }
-        
+    # Realiza la petición POST para crear un nuevo usuario
         response = requests.post(api_url + "/users", new_user)
         assert response.status_code == 201 
-
+    # Prueba para verificar los datos de la respuesta de la petición POST /users
         data = response.json()
         print(data)
         assert "id" in data       
-
+    # Verifica que los datos devueltos coinciden con los enviados
         if "createdAt" in data:
             created_at = data["createdAt"]
             current_year = datetime.now().year
             assert str(current_year) in created_at , f"no esta en el año actual"
+
+# Clase de pruebas para actualizar un usuario existente.
 class TestDeleteUser:
     URL_API = "https://jsonplaceholder.typicode.com/"
     @pytest.mark.delete
     def test_delete_response_code(self, api_url):
         response = requests.delete(api_url + "/users/1")
         assert response.status_code == 200
-
+# Clase de pruebas para el flujo completo de usuarios.
 class TestUserWorksFlow:
-    
+    # Marca para identificar la prueba como de tipo completo
     def test_completo_users(self,api_url):
         logger.info("TEST ENCADENADO DE USUARIOS: GET, POST, PUT, PATCH, DELETE")
         logger.info("1.GET Obtener usuarios")
@@ -95,12 +100,12 @@ class TestUserWorksFlow:
         check.equal(response.status_code, 200)
         check.is_true(len(data) > 0)
         print("1.POST Crear un nuevo usuario")
-
+        # POST CREAR USUARIO CON FAKER.
         new_user = {
             "name": fake.name(),
             "email": fake.email(),
             "phone": fake.phone_number(),
             }
-        
+        # Respuesta de la petición POST
         response = requests.post(api_url + "/users", new_user)
         assert response.status_code == 201 

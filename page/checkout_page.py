@@ -34,7 +34,7 @@ class CheckoutPage:
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.CANCEL_BUTTON)
         ).click()
-    
+    # Funcion que obtiene el mensaje de error mostrado en la pagina de checkout.
     def get_error_message(self):
         try:
             error_element = self.driver.find_element(*self.ERROR_MESSAGE)

@@ -4,8 +4,10 @@ from data.data_login import CASOS_LOGIN
 from utils.example_csv_json import get_login_csv, get_login_json
 from utils.faker import get_login_faker
 import time 
+import os 
+from datetime import datetime
 
-# Parametrización de pruebas utilizando datos de CAS
+# Parametrización de pruebas utilizando datos de CASOS LOGIN.
 @pytest.mark.parametrize("username,password,login_bool", CASOS_LOGIN)
 def test_valid_login(driver, username, password, login_bool):
     login_page = LoginPage(driver)
@@ -15,10 +17,11 @@ def test_valid_login(driver, username, password, login_bool):
     if login_bool:
         # Verifica que la URL actual contiene "inventory.html" después de un login exitoso.
         assert "inventory.html" in driver.current_url
+        driver.save_screenshot("login_exitoso.png")  
     else:
         # Verifica que la URL actual no contiene "inventory.html" después de un login fallido.
         assert "inventory.html" not in driver.current_url
-
+        driver.save_screenshot("login_no_exitoso.png")
 # Parametrización de pruebas utilizando datos de un archivo CSV
 @pytest.mark.parametrize("username,password,login_bool", get_login_csv())
 def test_valid_login_csv(driver, username, password, login_bool):
@@ -29,10 +32,11 @@ def test_valid_login_csv(driver, username, password, login_bool):
     if login_bool:
         # Verifica que la URL actual contiene "inventory.html" después de un login exitoso.
         assert "inventory.html" in driver.current_url
+        driver.save_screenshot("login_exitoso_cvs.png")
     else:
         # Verifica que la URL actual no contiene "inventory.html" después de un login fallido.
         assert "inventory.html" not in driver.current_url
-
+        driver.save_screenshot("login_no_exitoso_cvs.png")  
  # Parametrización de pruebas utilizando datos de un archivo Json
 @pytest.mark.parametrize("username,password,login_bool", get_login_json())
 def test_valid_login_json(driver, username, password, login_bool):
