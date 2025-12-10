@@ -1,0 +1,4 @@
+
+python3 -m pytest ./test -v --html=reports/reporte_final.html --self-contained-html 
+
+python3 -m pytest ./apis --tb=no -v    

@@ -5,6 +5,7 @@ from page.cart_page import CartPage
 from page.checkout_page import CheckoutPage 
 import time
 
+# Pruebas para la página de checkout.
 def test_checkout_process(driver):
     login = LoginPage(driver)
     inventory = InventoryPage(driver)
@@ -30,6 +31,7 @@ def test_checkout_process(driver):
     # Verificar que avanzamos a la página de overview del checkout.
     assert "checkout-step-two" in driver.current_url, "No se avanzó a la página de overview del checkout."
 
+# Verifica la validación de campos obligatorios en el checkout.
 def test_checkout_validation(driver):
     login = LoginPage(driver)
     inventory = InventoryPage(driver)

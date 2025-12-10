@@ -6,6 +6,7 @@ from page.checkout_page import CheckoutPage
 from page.checkout_complete_page import CheckoutCompletePage 
 import time
 
+# Prueba para el flujo completo de compra hasta la página de checkout completo.
 def test_checkout_purchase_flow(driver):
     login = LoginPage(driver)
     inventory = InventoryPage(driver)
