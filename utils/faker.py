@@ -10,7 +10,7 @@ def get_login_faker(num_casos=5):
     for _ in range(num_casos):
         username = fake.user_name()
         password = fake.password(length=12)
-        login_example = fake.boolean(chance_of_getting_true=50)
+        login_example = False 
         # Añade la tupla (username, password, login_example) a la lista de casos.
         casos.append((username, password, login_example))
     return casos
