@@ -30,9 +30,10 @@ def test_checkout_purchase_flow(driver):
     checkout.continue_to_overview()
     time.sleep(2)
     driver.get("https://www.saucedemo.com/checkout-complete.html")
+    time.sleep(2)
     # Verificar que avanzamos a la página de overview del checkout.
     assert complete.is_at_page(), "No se está en la página de checkout complete."
-    assert "THANK YOU FOR YOUR ORDER" in complete.get_success_message(), "El mensaje de éxito no es correcto."
+    assert "Thank you for your order!" in complete.get_success_message(), "El mensaje de éxito no es correcto."
     assert complete.is_success_image_displayed(), "La imagen de éxito no se muestra correctamente."
     # Paso 4: Regresar a la página de inventario.
     complete.back_to_home()
