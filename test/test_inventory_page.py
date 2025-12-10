@@ -6,12 +6,9 @@ def test_login_inventory_page(driver):
     login_page = LoginPage(driver)
     inventory_page = InventoryPage(driver)
     login_page.open()
-    login_page.login()
-
-    time.sleep(3)
-
+    login_page.login("standard_user", "secret_sauce")
+    time.sleep(2)
     inventory_page.is_at_page()
-
     inventory_page.logout()
     time.sleep(3)
     assert "https://www.saucedemo.com/" in driver.current_url

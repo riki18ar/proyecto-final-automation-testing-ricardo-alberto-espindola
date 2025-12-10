@@ -23,7 +23,7 @@ def test_checkout_process(driver):
     # Verificar que estamos en la página de checkout.
     assert checkout.is_at_page(), "No se está en la página de checkout."
     # Paso 3: Completar la información del cliente (nombre, apellido, zip code) y continuar al overview.
-    checkout.fill_customer_info("Peter", "Pan", "31650")
+    checkout.fill_customer_information("Peter", "Pan", "31650")
     time.sleep(2)
     checkout.continue_to_overview()
     time.sleep(2)

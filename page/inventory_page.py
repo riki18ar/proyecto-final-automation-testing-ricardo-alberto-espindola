@@ -28,8 +28,8 @@ class InventoryPage:
         ).click()
     # Funcion para cerrar sesión.
     def logout( self ):
-        self.driver.find_element(*self.MENU_BUTTON).click()
-        time.sleep(5)
+        self.driver.find_element(*self.MENU_BUTTON_ID).click()
+        time.sleep(2)
         WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable(self.LINK_BUTTON)
+            EC.element_to_be_clickable(self.LINK_LOGOUT_ID)
         ).click()
